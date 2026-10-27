@@ -10,7 +10,6 @@ from langchain_mcp_adapters.client import MultiServerMCPClient
 
 from app.core.agent import PROJECT_DIR, Settings
 
-
 MCP_SERVERS_DIR = PROJECT_DIR / "mcp_servers"
 
 

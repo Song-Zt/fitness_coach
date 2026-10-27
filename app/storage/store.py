@@ -9,9 +9,8 @@ import sqlite3
 import uuid
 from collections.abc import Iterator
 from contextlib import contextmanager
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS sessions (
@@ -34,7 +33,7 @@ CREATE INDEX IF NOT EXISTS idx_messages_session ON messages(session_id, id);
 
 
 def _now() -> str:
-    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+    return datetime.now(UTC).isoformat(timespec="seconds")
 
 
 class ConversationStore:

@@ -21,10 +21,9 @@ import sys
 import time
 from collections import Counter
 from dataclasses import replace
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
-
 
 PROJECT_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_DIR))
@@ -36,7 +35,6 @@ from app.core.streaming import (  # noqa: E402
     extract_tool_trajectory,
 )
 from mcp_servers.calendar_server import SCHEMA  # noqa: E402
-
 
 DEFAULT_CASES = PROJECT_DIR / "evals" / "cases.json"
 DEFAULT_OUTPUT = PROJECT_DIR / "evals" / "report.json"
@@ -469,7 +467,8 @@ def render_markdown(summary: dict) -> str:
         "",
         "## 分类结果",
         "",
-        "| 类别 | 用例数 | 工具准确率 | 参数准确率 | 状态准确率 | 关键词命中率 | 行为准确率 | 平均延迟 |",
+        "| 类别 | 用例数 | 工具准确率 | 参数准确率 | 状态准确率 "
+        "| 关键词命中率 | 行为准确率 | 平均延迟 |",
         "|---|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for category, row in summary["by_category"].items():
@@ -538,7 +537,7 @@ async def main() -> int:
 
     summary = summarize(results, settings)
     report = {
-        "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "generated_at": datetime.now(UTC).isoformat(timespec="seconds"),
         "summary": summary,
         "results": results,
     }

@@ -13,7 +13,6 @@ from app.core.prompts import WELCOME_MESSAGE
 from app.core.streaming import astream_agent_events
 from app.storage.store import ConversationStore
 
-
 CLI_SESSION_ID = "cli-default"
 
 

@@ -15,7 +15,6 @@ from zoneinfo import ZoneInfo
 import httpx
 from mcp.server.fastmcp import FastMCP
 
-
 TIMEZONE = os.getenv("WEATHER_TIMEZONE", "Asia/Shanghai")
 TZ = ZoneInfo(TIMEZONE)
 GEOCODE_URL = "https://geocoding-api.open-meteo.com/v1/search"

@@ -3,7 +3,6 @@ import uvicorn
 
 from app.web.api import create_app
 
-
 app = create_app()
 
 

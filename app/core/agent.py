@@ -16,7 +16,6 @@ from langchain_openai import ChatOpenAI
 from app.core.prompts import build_system_prompt
 from app.core.tools import fitness_tools
 
-
 # app/core/agent.py -> app/core -> app -> 项目根目录
 PROJECT_DIR = Path(__file__).resolve().parents[2]
 ROOT_DIR = PROJECT_DIR.parent
@@ -58,7 +57,7 @@ class Settings:
     weather_offline: bool = False
 
     @classmethod
-    def from_env(cls) -> "Settings":
+    def from_env(cls) -> Settings:
         load_environment()
         return cls(
             model=os.getenv("MODEL", "").strip(),

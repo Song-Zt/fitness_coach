@@ -18,7 +18,6 @@ from zoneinfo import ZoneInfo
 
 from mcp.server.fastmcp import FastMCP
 
-
 PROJECT_DIR = Path(__file__).resolve().parent.parent
 DEFAULT_DB = PROJECT_DIR / "data" / "calendar.db"
 TIMEZONE = os.getenv("CALENDAR_TIMEZONE", "Asia/Shanghai")

@@ -9,7 +9,6 @@ import logging
 import time
 from collections.abc import Callable
 from contextlib import asynccontextmanager
-from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse, StreamingResponse
@@ -18,7 +17,6 @@ from pydantic import BaseModel, Field
 from app.core.agent import PROJECT_DIR, Settings, create_fitness_agent
 from app.core.streaming import astream_agent_events
 from app.storage.store import ConversationStore
-
 
 STATIC_DIR = PROJECT_DIR / "static"
 logger = logging.getLogger(__name__)
@@ -48,9 +46,15 @@ def _error_hint(exc: Exception) -> str:
     if "notfound" in name or "404" in text:
         return "模型或接口地址不存在：请检查 .env 中的 MODEL 和 DEEPSEEK_BASE_URL。"
     if "connection" in name or "timeout" in name or "connect" in text:
-        return "模型服务连接失败：请检查网络、代理、DEEPSEEK_BASE_URL，或确认当前网络能访问模型服务。"
+        return (
+            "模型服务连接失败：请检查网络、代理、DEEPSEEK_BASE_URL，"
+            "或确认当前网络能访问模型服务。"
+        )
     if "mcp" in name or "mcp" in text or "stdio" in text:
-        return "MCP 工具调用失败：请确认已安装 mcp 与 langchain-mcp-adapters，并检查日历/天气 Server 的日志。"
+        return (
+            "MCP 工具调用失败：请确认已安装 mcp 与 langchain-mcp-adapters，"
+            "并检查日历/天气 Server 的日志。"
+        )
     return "请查看后端日志，并检查 .env 配置。"
 
 
