@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+
+# 测试与静态检查缓存
+.pytest_cache/
+.ruff_cache/
+
+# 本地配置与运行时数据
+.env
+data/
+*.db
+*.db-wal
+*.db-shm
+.tmp/
+pytest_tmp/
+pytest-cache-files-*/
+
+# 评测产物
+evals/report.json
+evals/report.md
+
+# IDE / 系统文件
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
